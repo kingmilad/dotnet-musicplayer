@@ -71,11 +71,15 @@ namespace MusicPlayer
 
         public void PlayTrack(Track track)
         {
+            if (ActiveTrack == null)
+            {
+                throw new ArgumentNullException("Track is null");
+            }
             if (ActiveTrack != null)
             {
                 StopTrack();
             }
-            ActiveTrack = track ?? throw new ArgumentNullException("Track is null");
+           // ActiveTrack = track ?? throw new ArgumentNullException("Track is null");
             InitializeTrackComponents();
             waveOut.Volume = Volume;
             waveOut.Play();
